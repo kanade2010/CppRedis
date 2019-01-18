@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cpp_redis/cpp_redis>
+#include <thread>
+#include <chrono>
 
 int main()
 {
@@ -9,17 +11,12 @@ int main()
 
   client.connect("127.0.0.1", 6379);
 
-  client.set("hello", "redis world", [](cpp_redis::reply& reply){
-    std::cout << reply << "\n";
-  });
+  while(true)
+  {
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+    client.publish("test_chan", "hello redis subscriber");
+    client.commit();
+  }
 
-  client.get("hello", [](cpp_redis::reply& reply){
-    std::cout << reply << "\n";
-  });
-
-  client.sync_commit();
-
-
-  getchar();
   return 0;
 }

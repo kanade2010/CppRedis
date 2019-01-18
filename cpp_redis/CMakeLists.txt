@@ -29,8 +29,12 @@ target_link_libraries(cpp_redis_test cpp_redis)
 target_link_libraries(cpp_redis_test tacopie)
 target_link_libraries(cpp_redis_test pthread)
 
-
 add_executable (cpp_redis_sub_test cpp_redis_sub_test.cpp)
 target_link_libraries(cpp_redis_sub_test cpp_redis)
 target_link_libraries(cpp_redis_sub_test tacopie)
 target_link_libraries(cpp_redis_sub_test pthread)
+
+add_executable (cpp_redis_pub_test cpp_redis_pub_test.cpp)
+target_link_libraries(cpp_redis_pub_test cpp_redis)
+target_link_libraries(cpp_redis_pub_test tacopie)
+target_link_libraries(cpp_redis_pub_test pthread)
